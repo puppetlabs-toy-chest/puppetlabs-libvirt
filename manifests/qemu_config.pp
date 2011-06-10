@@ -27,7 +27,7 @@ define libvirt::qemu_config(
 
   ) {
 
-  file { "${libvirt_config_dir}/qemu.d/${name}":
+  file { "${libvirt::params::libvirt_config_dir}/qemu.d/${name}":
     content => inline_template('<%= name %>=<% if value.kind_of?(Array) %>["<%= value.join("\",\"") %>"]<% elsif value.match(/^[1-9]\d*/) %><%=value%><% else %>"<%= value %>"<% end %><%= "\n" %>'),
     notify => Exec["create_qemu_conf"],
   }
