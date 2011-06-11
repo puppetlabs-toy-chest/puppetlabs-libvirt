@@ -28,7 +28,7 @@ define libvirt::libvirtd_config(
   ) {
 
   file { "/etc/libvirt/libvirtd.d/${name}":
-    content => inline_template('<%= name %>=<% if value.kind_of?(Array) %>["<%= value.join("\",\"") %>"]<% elsif value.match(/^[1-9]\d*/) %><%=value%><% else %>"<%= value %>"<% end %><%= "\n" %>'),
+    content => template("${module_name}/libvirtd.conf.erb"),
     notify => Exec["create_libvirtd_conf"],
   }
 
