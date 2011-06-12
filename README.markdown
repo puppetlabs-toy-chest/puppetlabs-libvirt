@@ -1,6 +1,12 @@
 # libvirt Module
 
-This module manages libvirt from within Puppet.
+This module manages software to install and configure libvirt from within 
+Puppet. 
+
+It does not take care of the creation of virtual instances - if you wish to
+manage instances directly in Puppet use:
+
+https://github.com/carlasouza/puppet-virt
 
 # Quick Start
 
