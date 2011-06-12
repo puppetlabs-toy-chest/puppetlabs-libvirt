@@ -28,7 +28,7 @@ define libvirt::qemu_config(
   ) {
 
   file { "${libvirt::params::libvirt_config_dir}/qemu.d/${name}":
-    content => inline_template("${module_name}/qemu.conf.erb"),
+    content => template("${module_name}/qemu.conf.erb"),
     notify => Exec["create_qemu_conf"],
   }
 
