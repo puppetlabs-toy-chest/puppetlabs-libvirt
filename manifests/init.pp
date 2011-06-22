@@ -2,6 +2,17 @@
 #
 # == Parameters
 #
+# These two parameters are used for configuring various configuration files
+# that libvirt uses.
+#
+# [libvirtd_config]
+#   *Optional* A hash for creating libvirt::libvirtd_config resources.
+# [qemu_config]
+#   *Optional* A hash for creating libvirt::qemu_config resources.
+#
+# These parameters are usually worked out automatically and can usually be
+# left as they are.
+#
 # [package]
 #   *Optional* Package(s) for installing libvirt.
 # [version]
@@ -12,16 +23,12 @@
 #   *Optional* User that libvirtd runs as.
 # [group]
 #   *Optional* Group that libvirtd runs as.
-# [libvirtd_config]
-#   *Optional* A hash for creating libvirt::libvirtd_config resources.
 # [config_dir]
 #   *Optional* Path to libvirt configuration.
 # [libvirtd_config_file]
 #   *Optional* Path to the libvirtd configuration file.
 # [qemu_config_file]
 #   *Optional* Path to the qemu configuration file for libvirtd.
-# [qemu_config]
-#   *Optional* A hash for creating libvirt::qemu_config resources.
 #
 # == Variables
 #
