@@ -91,7 +91,7 @@ class libvirt (
   # Users and groups. #
   #####################
 
-  user { $user:
+  group { $group:
     ensure => present,
     system => true,
   }
