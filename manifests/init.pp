@@ -92,7 +92,8 @@ class libvirt (
   #####################
 
   user { $user:
-    ensure  => present,
+    ensure => present,
+    system => true,
   }
 
   ########################
