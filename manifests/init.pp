@@ -92,8 +92,9 @@ class libvirt (
   #####################
 
   group { $group:
-    ensure => present,
-    system => true,
+    ensure  => present,
+    system  => true,
+    require => Package[$package],
   }
 
   ########################
@@ -163,3 +164,4 @@ class libvirt (
   create_resources("libvirt::qemu_config", $qemu_config)
 
 }
+
