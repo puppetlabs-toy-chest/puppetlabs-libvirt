@@ -87,6 +87,14 @@ class libvirt (
     hasrestart => true,
   }
 
+  #####################
+  # Users and groups. #
+  #####################
+
+  user { $user:
+    ensure  => present,
+  }
+
   ########################
   # libvirtd.conf Config #
   ########################
