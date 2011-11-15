@@ -47,7 +47,7 @@ class libvirt::params {
       $libvirtd_config_file = "${libvirt_config_dir}/libvirtd.conf"
       $qemu_config_file = "${libvirt_config_dir}/qemu.conf"
     }
-    'Fedora': {
+    'Fedora', 'CentOS': {
       $libvirt_package = "libvirt"
       $libvirt_version = "installed"
       $libvirt_service = "libvirtd"
