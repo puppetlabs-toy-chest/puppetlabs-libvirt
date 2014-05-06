@@ -26,9 +26,11 @@ regarding warranty.
 
 So this module was predominantly tested on:
 
-* Puppet 2.7.0rc4
-* Debian Wheezy
-* libvirt 0.9.0
+* Debian Wheezy/libvirt 0.9.0/Puppet 2.7.0rc4
+
+This model is known to work on:
+
+* Fedora 16/libvirt 0.9.6/Puppet 2.7.6
 
 Other combinations may work, and we are happy to obviously take patches to 
 support other stacks.

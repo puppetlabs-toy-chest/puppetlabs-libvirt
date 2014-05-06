@@ -87,6 +87,16 @@ class libvirt (
     hasrestart => true,
   }
 
+  #####################
+  # Users and groups. #
+  #####################
+
+  group { $group:
+    ensure  => present,
+    system  => true,
+    require => Package[$package],
+  }
+
   ########################
   # libvirtd.conf Config #
   ########################
@@ -113,6 +123,8 @@ class libvirt (
     group => root,
     mode => "0644",
     require => Package[$package],
+    ensure => file,
+    notify => Exec['create_libvirtd_conf'],
   }
   create_resources("libvirt::libvirtd_config", $libvirtd_config)
 
@@ -146,7 +158,10 @@ class libvirt (
     group => root,
     mode => "0644",
     require => Package[$package],
+    ensure => file,
+    notify => Exec['create_qemu_conf'],
   }
   create_resources("libvirt::qemu_config", $qemu_config)
 
 }
+
