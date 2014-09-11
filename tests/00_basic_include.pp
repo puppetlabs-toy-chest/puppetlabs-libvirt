@@ -1,1 +1,1 @@
-class { "libvirt": }
+class { 'libvirt': }

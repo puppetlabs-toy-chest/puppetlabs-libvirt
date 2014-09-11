@@ -37,7 +37,7 @@
 # == Examples
 #
 # Default configuration:
-#     
+#
 #     class { "libvirt": }
 #
 # Custom libvirtd configuration:
@@ -81,9 +81,9 @@ class libvirt (
     ensure => $version
   }
   service { $service:
-    ensure => running,
-    enable => true,
-    hasstatus => true,
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
     hasrestart => true,
   }
 
@@ -101,67 +101,67 @@ class libvirt (
   # libvirtd.conf Config #
   ########################
   file { "${config_dir}/libvirtd.d":
-    ensure => directory,
-    purge => true,
+    ensure  => directory,
+    purge   => true,
     recurse => true,
     require => Package[$package],
-    notify => Exec["create_libvirtd_conf"],
+    notify  => Exec['create_libvirtd_conf'],
   }
   file { "${config_dir}/libvirtd.d/00-header":
     content => "# Managed by puppet\n",
     require => Package[$package],
-    notify => Exec["create_libvirtd_conf"],
+    notify  => Exec['create_libvirtd_conf'],
   }
-  exec { "create_libvirtd_conf":
-    command => "/bin/cat ${config_dir}/libvirtd.d/* > ${libvirtd_config_file}",
+  exec { 'create_libvirtd_conf':
+    command     => "/bin/cat ${config_dir}/libvirtd.d/* > ${libvirtd_config_file}",
     refreshonly => true,
-    require => [ Package[$package], File["${config_dir}/libvirtd.d"] ],
-    notify => Service[$service],
+    require     => [ Package[$package], File["${config_dir}/libvirtd.d"] ],
+    notify      => Service[$service],
   }
   file { $libvirtd_config_file:
-    owner => root,
-    group => root,
-    mode => "0644",
+    ensure  => file,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
     require => Package[$package],
-    ensure => file,
-    notify => Exec['create_libvirtd_conf'],
+    notify  => Exec['create_libvirtd_conf'],
   }
-  create_resources("libvirt::libvirtd_config", $libvirtd_config)
+  create_resources('libvirt::libvirtd_config', $libvirtd_config)
 
   # Some minor defaults. These may need to differ per OS in the future.
-  libvirt::libvirtd_config { ["auth_unix_ro", "auth_unix_rw"]: value => "none" }
-  libvirt::libvirtd_config { "unix_sock_group": value => $group }
-  libvirt::libvirtd_config { "unix_sock_rw_perms": value => "0770" }
+  libvirt::libvirtd_config { ['auth_unix_ro', 'auth_unix_rw']: value => 'none' }
+  libvirt::libvirtd_config { 'unix_sock_group': value => $group }
+  libvirt::libvirtd_config { 'unix_sock_rw_perms': value => '0770' }
 
   ####################
   # qemu.conf Config #
   ####################
   file { "${config_dir}/qemu.d":
-    ensure => directory,
-    purge => true,
+    ensure  => directory,
+    purge   => true,
     recurse => true,
     require => Package[$package],
-    notify => Exec["create_qemu_conf"],
+    notify  => Exec['create_qemu_conf'],
   }
   file { "${config_dir}/qemu.d/00-header":
     content => "# Managed by puppet\n",
     require => Package[$package],
-    notify => Exec["create_qemu_conf"],
+    notify  => Exec['create_qemu_conf'],
   }
-  exec { "create_qemu_conf":
-    command => "/bin/cat ${config_dir}/qemu.d/* > ${qemu_config_file}",
+  exec { 'create_qemu_conf':
+    command     => "/bin/cat ${config_dir}/qemu.d/* > ${qemu_config_file}",
     refreshonly => true,
-    require => [ Package[$package], File["${config_dir}/qemu.d"] ],
+    require     => [ Package[$package], File["${config_dir}/qemu.d"] ],
   }
   file { $qemu_config_file:
-    owner => root,
-    group => root,
-    mode => "0644",
+    ensure  => file,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
     require => Package[$package],
-    ensure => file,
-    notify => Exec['create_qemu_conf'],
+    notify  => Exec['create_qemu_conf'],
   }
-  create_resources("libvirt::qemu_config", $qemu_config)
+  create_resources('libvirt::qemu_config', $qemu_config)
 
 }
 
