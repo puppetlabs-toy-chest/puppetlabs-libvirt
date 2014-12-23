@@ -29,7 +29,7 @@ define libvirt::libvirtd_config(
 
   file { "/etc/libvirt/libvirtd.d/${name}":
     content => template("${module_name}/libvirtd.conf.erb"),
-    notify => Exec["create_libvirtd_conf"],
+    notify  => Exec['create_libvirtd_conf'],
   }
 
 }
