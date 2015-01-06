@@ -57,6 +57,16 @@ class libvirt::params {
       $libvirtd_config_file = "${libvirt_config_dir}/libvirtd.conf"
       $qemu_config_file = "${libvirt_config_dir}/qemu.conf"
     }
+    'SLES', 'OpenSuSE': {
+      $libvirt_package = 'libvirt-daemon'
+      $libvirt_version = 'installed'
+      $libvirt_service = 'libvirtd'
+      $libvirt_user = 'qemu'
+      $libvirt_group = 'libvirt'
+      $libvirt_config_dir = '/etc/libvirt'
+      $libvirtd_config_file = "${libvirt_config_dir}/libvirtd.conf"
+      $qemu_config_file = "${libvirt_config_dir}/qemu.conf"
+    }
     default: {
       fail("Operating system ${::operatingsystem} is not supported")
     }
