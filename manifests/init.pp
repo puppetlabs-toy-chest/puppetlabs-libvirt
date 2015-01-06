@@ -66,11 +66,11 @@ class libvirt (
   $service = $libvirt::params::libvirt_service,
   $user = $libvirt::params::libvirt_user,
   $group = $libvirt::params::libvirt_group,
-  $libvirtd_config = undef,
+  $libvirtd_config = {},
   $config_dir = $libvirt::params::libvirt_config_dir,
   $libvirtd_config_file = $libvirt::params::libvirtd_config_file,
   $qemu_config_file = $libvirt::params::qemu_config_file,
-  $qemu_config = undef
+  $qemu_config = {}
 
   ) inherits libvirt::params {
 
@@ -127,11 +127,6 @@ class libvirt (
     notify  => Exec['create_libvirtd_conf'],
   }
   create_resources('libvirt::libvirtd_config', $libvirtd_config)
-
-  # Some minor defaults. These may need to differ per OS in the future.
-  libvirt::libvirtd_config { ['auth_unix_ro', 'auth_unix_rw']: value => 'none' }
-  libvirt::libvirtd_config { 'unix_sock_group': value => $group }
-  libvirt::libvirtd_config { 'unix_sock_rw_perms': value => '0770' }
 
   ####################
   # qemu.conf Config #
