@@ -66,11 +66,11 @@ class libvirt (
   $service = $libvirt::params::libvirt_service,
   $user = $libvirt::params::libvirt_user,
   $group = $libvirt::params::libvirt_group,
-  $libvirtd_config = undef,
+  $libvirtd_config = {},
   $config_dir = $libvirt::params::libvirt_config_dir,
   $libvirtd_config_file = $libvirt::params::libvirtd_config_file,
   $qemu_config_file = $libvirt::params::qemu_config_file,
-  $qemu_config = undef
+  $qemu_config = {}
 
   ) inherits libvirt::params {
 
